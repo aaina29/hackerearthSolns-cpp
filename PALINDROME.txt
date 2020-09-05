@@ -1,0 +1,51 @@
+1.) To check whether a no. N is prime no
+==> checking from 2 to sqrt(N)
+
+2.) Printing the range of prime nos (range till N)
+==> for(int i=0; i<N; i++)
+        checking each no from 2 to sqrt(N)
+
+    Note: complexity becomes O(N*sqrt(N))
+
+
+3.) PRIME SIEVE(SAY PRINTING ALL THE PRIME NOS IN RANGE N)
+    
+    Note: this is going to work only if it is going to start from 2
+          If it is going to start with any random no this algorithm is not going to work  
+
+==> prime[N+1] = {true}           //assuming all no in range to be prime by assing true value to them in array
+    prime[0] = false //not a prime
+    prime[1] = false //not prime
+    for(int i=2; i*i<N; i++){                                
+        if(prime[i] == true){
+           for(int j= i; j*i<N; j++){
+               prime[i*j] = false;
+           }
+        }
+    }
+
+
+    Note: complexity becomes==>
+                               for every value of i what is no of times inner loop (second loop) runs: 
+                                                i=2   i=3   i=5
+                                                N/2 + N/3 + N/5 +..............
+                                                N(1/2 + 1/3 + 1/5 +...........)
+
+        o(N loglogN)
+
+4.) Given a no N Find its prime factorization
+==> primeFact[ ] //taking an empty array
+    int M =N;
+    for(int i=0; i*i <M;i++){           //N is changing everytime 
+        while(N%i==0){
+              primeFact.add(i);
+              N = N/i;
+        }
+    }
+    if(N>1){
+       primeFact.add(N);
+    }
+
+    Note: tme complexity: first loop : sqrt(N)'
+                          second loop:  logN
+                          
